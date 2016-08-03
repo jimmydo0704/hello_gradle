@@ -1,0 +1,38 @@
+apply plugin: 'java'
+
+// This is for tasks related to eclipse (Eg. cleanEclipse, eclipse)
+apply plugin: 'eclipse'
+
+// This is to provide application task (run, installApp)
+apply plugin: 'application'
+
+// This is for gradle run task to know which is main class to run
+mainClassName = 'hello.HelloWorld'
+
+repositories {
+    mavenCentral()
+}
+
+// This is to define compatible java version (eg. 1.6, 1.7, 1.8)
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+// This is to define dependencies
+dependencies {
+    compile "joda-time:joda-time:2.2"
+}
+
+
+// This is to define the rule for jar file name
+jar {
+    baseName = 'gs-gradle'
+    version =  '0.1.0'
+}
+
+// This is to make it possible for other devs to build without Gradle installed on 
+// their system. Eg. ./gradlew build or ./gradlew run
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+
